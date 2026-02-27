@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\IncomeController::index
  * @see app/Http/Controllers/IncomeController.php:20
@@ -42,41 +42,6 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-    /**
-* @see \App\Http\Controllers\IncomeController::index
- * @see app/Http/Controllers/IncomeController.php:20
- * @route '/incomes'
- */
-    const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: index.url(options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\IncomeController::index
- * @see app/Http/Controllers/IncomeController.php:20
- * @route '/incomes'
- */
-        indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: index.url(options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\IncomeController::index
- * @see app/Http/Controllers/IncomeController.php:20
- * @route '/incomes'
- */
-        indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: index.url({
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    index.form = indexForm
 /**
 * @see \App\Http\Controllers\IncomeController::create
  * @see app/Http/Controllers/IncomeController.php:57
@@ -120,41 +85,6 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-    /**
-* @see \App\Http\Controllers\IncomeController::create
- * @see app/Http/Controllers/IncomeController.php:57
- * @route '/incomes/create'
- */
-    const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: create.url(options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\IncomeController::create
- * @see app/Http/Controllers/IncomeController.php:57
- * @route '/incomes/create'
- */
-        createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: create.url(options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\IncomeController::create
- * @see app/Http/Controllers/IncomeController.php:57
- * @route '/incomes/create'
- */
-        createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: create.url({
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    create.form = createForm
 /**
 * @see \App\Http\Controllers\IncomeController::store
  * @see app/Http/Controllers/IncomeController.php:62
@@ -189,27 +119,6 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     method: 'post',
 })
 
-    /**
-* @see \App\Http\Controllers\IncomeController::store
- * @see app/Http/Controllers/IncomeController.php:62
- * @route '/incomes'
- */
-    const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-        action: store.url(options),
-        method: 'post',
-    })
-
-            /**
-* @see \App\Http\Controllers\IncomeController::store
- * @see app/Http/Controllers/IncomeController.php:62
- * @route '/incomes'
- */
-        storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-            action: store.url(options),
-            method: 'post',
-        })
-    
-    store.form = storeForm
 /**
 * @see \App\Http\Controllers\IncomeController::show
  * @see app/Http/Controllers/IncomeController.php:0
@@ -272,41 +181,6 @@ show.head = (args: { income: string | number } | [income: string | number ] | st
     method: 'head',
 })
 
-    /**
-* @see \App\Http\Controllers\IncomeController::show
- * @see app/Http/Controllers/IncomeController.php:0
- * @route '/incomes/{income}'
- */
-    const showForm = (args: { income: string | number } | [income: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: show.url(args, options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\IncomeController::show
- * @see app/Http/Controllers/IncomeController.php:0
- * @route '/incomes/{income}'
- */
-        showForm.get = (args: { income: string | number } | [income: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: show.url(args, options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\IncomeController::show
- * @see app/Http/Controllers/IncomeController.php:0
- * @route '/incomes/{income}'
- */
-        showForm.head = (args: { income: string | number } | [income: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: show.url(args, {
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    show.form = showForm
 /**
 * @see \App\Http\Controllers\IncomeController::edit
  * @see app/Http/Controllers/IncomeController.php:75
@@ -374,41 +248,6 @@ edit.head = (args: { income: number | { id: number } } | [income: number | { id:
     method: 'head',
 })
 
-    /**
-* @see \App\Http\Controllers\IncomeController::edit
- * @see app/Http/Controllers/IncomeController.php:75
- * @route '/incomes/{income}/edit'
- */
-    const editForm = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: edit.url(args, options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\IncomeController::edit
- * @see app/Http/Controllers/IncomeController.php:75
- * @route '/incomes/{income}/edit'
- */
-        editForm.get = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: edit.url(args, options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\IncomeController::edit
- * @see app/Http/Controllers/IncomeController.php:75
- * @route '/incomes/{income}/edit'
- */
-        editForm.head = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: edit.url(args, {
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    edit.form = editForm
 /**
 * @see \App\Http\Controllers\IncomeController::update
  * @see app/Http/Controllers/IncomeController.php:89
@@ -476,51 +315,6 @@ update.patch = (args: { income: number | { id: number } } | [income: number | { 
     method: 'patch',
 })
 
-    /**
-* @see \App\Http\Controllers\IncomeController::update
- * @see app/Http/Controllers/IncomeController.php:89
- * @route '/incomes/{income}'
- */
-    const updateForm = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-        action: update.url(args, {
-                    [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                        _method: 'PUT',
-                        ...(options?.query ?? options?.mergeQuery ?? {}),
-                    }
-                }),
-        method: 'post',
-    })
-
-            /**
-* @see \App\Http\Controllers\IncomeController::update
- * @see app/Http/Controllers/IncomeController.php:89
- * @route '/incomes/{income}'
- */
-        updateForm.put = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-            action: update.url(args, {
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'PUT',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'post',
-        })
-            /**
-* @see \App\Http\Controllers\IncomeController::update
- * @see app/Http/Controllers/IncomeController.php:89
- * @route '/incomes/{income}'
- */
-        updateForm.patch = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-            action: update.url(args, {
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'PATCH',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'post',
-        })
-    
-    update.form = updateForm
 /**
 * @see \App\Http\Controllers\IncomeController::destroy
  * @see app/Http/Controllers/IncomeController.php:103
@@ -578,38 +372,6 @@ destroy.delete = (args: { income: number | { id: number } } | [income: number | 
     url: destroy.url(args, options),
     method: 'delete',
 })
-
-    /**
-* @see \App\Http\Controllers\IncomeController::destroy
- * @see app/Http/Controllers/IncomeController.php:103
- * @route '/incomes/{income}'
- */
-    const destroyForm = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-        action: destroy.url(args, {
-                    [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                        _method: 'DELETE',
-                        ...(options?.query ?? options?.mergeQuery ?? {}),
-                    }
-                }),
-        method: 'post',
-    })
-
-            /**
-* @see \App\Http\Controllers\IncomeController::destroy
- * @see app/Http/Controllers/IncomeController.php:103
- * @route '/incomes/{income}'
- */
-        destroyForm.delete = (args: { income: number | { id: number } } | [income: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-            action: destroy.url(args, {
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'DELETE',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'post',
-        })
-    
-    destroy.form = destroyForm
 const incomes = {
     index: Object.assign(index, index),
 create: Object.assign(create, create),

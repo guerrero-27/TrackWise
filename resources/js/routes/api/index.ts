@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\ExpenseController::dashboardStats
  * @see app/Http/Controllers/ExpenseController.php:190
@@ -41,42 +41,6 @@ dashboardStats.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => 
     url: dashboardStats.url(options),
     method: 'head',
 })
-
-    /**
-* @see \App\Http\Controllers\ExpenseController::dashboardStats
- * @see app/Http/Controllers/ExpenseController.php:190
- * @route '/api/dashboard-stats'
- */
-    const dashboardStatsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: dashboardStats.url(options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\ExpenseController::dashboardStats
- * @see app/Http/Controllers/ExpenseController.php:190
- * @route '/api/dashboard-stats'
- */
-        dashboardStatsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: dashboardStats.url(options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\ExpenseController::dashboardStats
- * @see app/Http/Controllers/ExpenseController.php:190
- * @route '/api/dashboard-stats'
- */
-        dashboardStatsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: dashboardStats.url({
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    dashboardStats.form = dashboardStatsForm
 const api = {
     dashboardStats: Object.assign(dashboardStats, dashboardStats),
 }

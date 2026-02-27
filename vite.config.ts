@@ -1,4 +1,3 @@
-import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
@@ -17,14 +16,16 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
-        wayfinder({
-            formVariants: true,
-        }),
     ],
 
     server: {
-        host: true,
+        host: '0.0.0.0',
         port: 5173,
+        strictPort: false,
+        hmr: {
+            host: '192.168.1.4',
+            clientPort: 5173,
+        },
     },
 
     esbuild: {

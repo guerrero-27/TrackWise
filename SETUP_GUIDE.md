@@ -137,7 +137,7 @@ Open **two terminal windows**:
 php artisan serve
 ```
 
-Server runs at: `http://localhost:8000`
+Server runs at: `https://localhost:8000`
 
 **Terminal 2 - Frontend Build (Keep running):**
 
@@ -145,7 +145,7 @@ Server runs at: `http://localhost:8000`
 npm run dev
 ```
 
-Vite dev server runs at: `http://localhost:5173`
+Vite dev server runs at: `https://localhost:5173`
 
 ### Option 2: Using Composer Script
 
@@ -161,13 +161,13 @@ This runs both Laravel and Vite servers simultaneously using concurrently.
 npm run build
 ```
 
-Then access at: `http://localhost:8000`
+Then access at: `https://localhost:8000`
 
 ---
 
 ## 🔐 First Login
 
-1. Navigate to `http://localhost:8000`
+1. Navigate to `https://localhost:8000`
 2. Click **"Register"** to create a new account OR
 3. Use test credentials:
     - Email: `test@example.com`
@@ -378,7 +378,7 @@ Key variables in `.env`:
 APP_NAME=ExpenseTracker           # App name
 APP_DEBUG=true                    # Debug mode
 APP_ENV=local                     # Environment
-APP_URL=http://localhost:8000     # Application URL
+APP_URL=https://localhost:8000     # Application URL
 
 DB_CONNECTION=mysql               # Database type
 DB_HOST=127.0.0.1                # Database host

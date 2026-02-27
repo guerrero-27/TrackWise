@@ -21,6 +21,12 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
+
+    server: {
+        host: true,
+        port: 5173,
+    },
+
     esbuild: {
         jsx: 'automatic',
     },

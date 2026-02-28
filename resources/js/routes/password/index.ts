@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 import confirmD7e05f from './confirm'
 /**
 * @see \Laravel\Fortify\Http\Controllers\PasswordResetLinkController::request
@@ -140,6 +140,14 @@ email.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 /**
+ * Returns a form definition for use with Inertia's Form component
+ */
+email.form = (): RouteFormDefinition<'post'> => ({
+    action: email.definition.url,
+    method: 'post',
+})
+
+/**
 * @see \Laravel\Fortify\Http\Controllers\NewPasswordController::update
  * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:55
  * @route '/reset-password'
@@ -170,6 +178,14 @@ update.url = (options?: RouteQueryOptions) => {
  */
 update.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: update.url(options),
+    method: 'post',
+})
+
+/**
+ * Returns a form definition for use with Inertia's Form component
+ */
+update.form = (): RouteFormDefinition<'post'> => ({
+    action: update.definition.url,
     method: 'post',
 })
 

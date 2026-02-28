@@ -23,6 +23,13 @@ export type RouteFormDefinition<TMethod extends Method> = {
     method: TMethod;
 };
 
+/**
+ * Type for route functions that include the .form() method for Inertia forms
+ */
+export type RouteWithForm<TMethod extends Method> = ((options?: RouteQueryOptions) => RouteDefinition<TMethod>) & {
+    form: () => RouteFormDefinition<TMethod>;
+};
+
 export type RouteQueryOptions = {
     query?: QueryParams;
     mergeQuery?: QueryParams;

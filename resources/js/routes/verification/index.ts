@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \Laravel\Fortify\Http\Controllers\EmailVerificationPromptController::notice
  * @see vendor/laravel/fortify/src/Http/Controllers/EmailVerificationPromptController.php:18
@@ -135,6 +135,15 @@ send.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: send.url(options),
     method: 'post',
 })
+
+/**
+ * Returns a form definition for use with Inertia's Form component
+ */
+send.form = (): RouteFormDefinition<'post'> => ({
+    action: send.definition.url,
+    method: 'post',
+})
+
 const verification = {
     notice: Object.assign(notice, notice),
 verify: Object.assign(verify, verify),

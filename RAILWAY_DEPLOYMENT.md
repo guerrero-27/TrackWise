@@ -10,6 +10,11 @@ npm run build
 
 This creates the `public/build` folder with all compiled assets.
 
+## Files Created for Deployment:
+
+- `Dockerfile` - Custom Docker configuration
+- `railway.json` - Railway deployment config (uses Dockerfile)
+
 ## Environment Variables to Add in Railway Dashboard
 
 Go to your Railway project > Variables and add these:
@@ -42,7 +47,6 @@ QUEUE_CONNECTION=database
 2. **DB_DATABASE**: Change "railway" to your actual database name in Railway
 3. **DB_PASSWORD**: The password you provided
 4. **APP_URL**: Replace "your-app-name" with your actual Railway app name
-5. **LOG_CHANNEL**: Set to "stderr" for Railway logging
 
 ## Deploy Steps:
 
@@ -59,8 +63,3 @@ Migrations will run automatically via releaseCommand. If needed, run manually:
 ```bash
 php artisan migrate --force
 ```
-
-## Configuration Files Created:
-
-- `railway.json` - Railway deployment config
-- `nixpacks.toml` - Nixpacks build configuration

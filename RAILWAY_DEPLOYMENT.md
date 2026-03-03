@@ -1,5 +1,15 @@
 # Railway Deployment Guide
 
+## Prerequisites (Before Deploying):
+
+**Important:** Build your frontend assets locally first before pushing to GitHub:
+
+```bash
+npm run build
+```
+
+This creates the `public/build` folder with all compiled assets.
+
 ## Environment Variables to Add in Railway Dashboard
 
 Go to your Railway project > Variables and add these:
@@ -36,30 +46,21 @@ QUEUE_CONNECTION=database
 
 ## Deploy Steps:
 
-1. Push your code to GitHub
-2. Connect your GitHub repo to Railway
-3. Add the environment variables above in Railway Dashboard
-4. Deploy the app
+1. Build frontend locally: `npm run build`
+2. Push your code to GitHub (include `public/build` folder)
+3. Connect your GitHub repo to Railway
+4. Add the environment variables above in Railway Dashboard
+5. Deploy the app
 
-## After Deployment (Run these commands in Railway):
+## After Deployment:
 
-Run these commands using Railway's "Run a command" feature:
+Migrations will run automatically via releaseCommand. If needed, run manually:
 
 ```bash
-# Clear and rebuild config cache
-php artisan config:cache
-
-# Run migrations
 php artisan migrate --force
-
-# Create storage link (if needed)
-php artisan storage:link
 ```
 
-## If Still Getting 500 Error:
+## Configuration Files Created:
 
-Check Railway deploy logs for the specific error. Common fixes:
-
-1. Make sure APP_KEY is set correctly
-2. Verify database credentials are correct
-3. Check if migrations ran successfully
+- `railway.json` - Railway deployment config
+- `nixpacks.toml` - Nixpacks build configuration

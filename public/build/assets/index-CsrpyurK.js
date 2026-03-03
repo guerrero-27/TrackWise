@@ -1,0 +1,1 @@
+import{q as t}from"./index-BH5Arox6.js";const o=r=>({url:o.url(r),method:"post"});o.definition={methods:["post"],url:"/user/confirm-password"};o.url=r=>o.definition.url+t(r);o.post=r=>({url:o.url(r),method:"post"});o.form=()=>({action:o.definition.url,method:"post"});const e={store:Object.assign(o,o)};export{e as c,o as s};

@@ -3,9 +3,12 @@
   "build": {
     "builder": "NIXPACKS",
     "buildPlan": "php-22",
-    "override": {
-      "install": "rm -f package-lock.json && rm -rf node_modules && composer install --optimize-autoloader --no-dev && npm install --ignore-scripts && npm run build"
-    }
+    "ignore": [
+      "node_modules",
+      "package.json",
+      "package-lock.json",
+      "vite.config.ts"
+    ]
   },
   "deploy": {
     "numReplicas": 1,

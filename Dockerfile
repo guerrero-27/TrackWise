@@ -32,8 +32,7 @@ RUN composer install --optimize-autoloader --no-dev
 RUN chmod -R 755 /var/www/storage \
     && chmod -R 755 /var/www/bootstrap/cache
 
-EXPOSE 8080
+EXPOSE 8000
 
-# Start PHP built-in server with host 0.0.0.0
-CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT} -t public"]
 

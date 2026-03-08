@@ -1,50 +1,41 @@
 FROM php:8.4-fpm
 
-# Install system dependencies
+# Install system packages
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    nginx \
-    supervisor
+    git curl zip unzip nginx supervisor \
+    nodejs npm libpng-dev libonig-dev libxml2-dev
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
+# PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath
 
-# Get Composer
+# Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
 WORKDIR /var/www
 
-# Copy application files
+# Copy project files
 COPY . .
 
-# Install PHP dependencies
+# Install backend dependencies
 RUN composer install --optimize-autoloader --no-dev
 
-# Set permissions
-RUN chmod -R 755 /var/www/storage \
-    && chmod -R 755 /var/www/bootstrap/cache \
-    && mkdir -p /var/run/php
+# Install frontend dependencies and build React
+RUN cd frontend && npm install && npm run build
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/sites-available/default
+# Copy React build output to Laravel public folder
+RUN cp -r frontend/dist/* public/
 
-# Copy supervisor configuration
+# Permissions fix
+RUN chmod -R 755 storage bootstrap/cache
+
+# Nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Create log directory for supervisor
 RUN mkdir -p /var/log/supervisor
 
-EXPOSE 8080
+EXPOSE 80
 
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-
+CMD ["/usr/bin/supervisord", "-n"]

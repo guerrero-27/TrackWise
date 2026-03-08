@@ -20,21 +20,21 @@ COPY . .
 RUN composer install --optimize-autoloader --no-dev
 
 # Install frontend dependencies and build React
-RUN cd frontend && npm install && npm run build
+RUN npm install && npm run build
 
-# Copy React build output to Laravel public folder
-RUN cp -r frontend/dist/* public/
+# No need to copy - Vite builds directly to public/build
 
 # Permissions fix
 RUN chmod -R 755 storage bootstrap/cache
 
 # Nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 # Supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /var/log/supervisor /var/run/php
 
 EXPOSE 80
 

@@ -1,4 +1,4 @@
-FROM php:8.4-cli
+FROM php:8.4-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    nginx \
+    supervisor
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -30,9 +32,19 @@ RUN composer install --optimize-autoloader --no-dev
 
 # Set permissions
 RUN chmod -R 755 /var/www/storage \
-    && chmod -R 755 /var/www/bootstrap/cache
+    && chmod -R 755 /var/www/bootstrap/cache \
+    && mkdir -p /var/run/php
 
-EXPOSE 8000
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/sites-available/default
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT} -t public"]
+# Copy supervisor configuration
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Create log directory for supervisor
+RUN mkdir -p /var/log/supervisor
+
+EXPOSE 8080
+
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 

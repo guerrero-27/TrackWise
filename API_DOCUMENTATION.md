@@ -4,7 +4,7 @@
 
 This document describes all available API endpoints in the Expense Tracking application.
 
-**Base URL**: `http://localhost:8000`
+**Base URL**: `https://localhost:8000`
 
 **Authentication**: All endpoints require user to be logged in (via Laravel Fortify)
 

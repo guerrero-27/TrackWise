@@ -178,7 +178,7 @@ npm run dev
 php artisan serve
 ```
 
-The application will be available at `http://localhost:8000`
+The application will be available at `https://localhost:8000`
 
 ## Project Structure
 
